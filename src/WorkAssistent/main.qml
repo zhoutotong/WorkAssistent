@@ -15,19 +15,45 @@ Window {
     minimumHeight: 480
     flags: "FramelessWindowHint"
 
+
     Column {
+        width: parent.width
+        height: 30
         Rectangle {
+
+            id: head
             width: parent.width
             height: 30
 
+            Button {
+                id: close_btn
+                width: 30
+                height: 30
+                anchors.right: parent.right
+                text: "x"
+                onClicked: {
+                    Qt.quit();
+                }
+            }
+
+            Button {
+                id: min_btn
+                width: 30
+                height: 30
+                anchors.right: close_btn.left
+
+                text: "_"
+                onClicked: {
+
+                }
+            }
+
             Row {
-                width: parent.width
+                width: parent.width - close_btn.width - min_btn.width
                 height: parent.height
 
                 Rectangle {
-                    width: parent.width
-                    height: parent.height
-
+                    anchors.fill: parent
                     Text {
                         text: "WorkAssistent"
                     }
@@ -50,42 +76,83 @@ Window {
 
                     }
                 }
+            }
+        }
 
-                Button {
 
-                    id: min_btn
-                    width: 30
-                    height: 30
-
-                    anchors.right: close_btn.left
-
-                    text: "_"
-                    onClicked: {
-
-                    }
-                }
-
-                Button {
-
-                    id: close_btn
-
-                    width: 30
-                    height: 30
-
-                    anchors.right: parent.right
-
-                    text: "x"
-                    onClicked: {
-                        Qt.quit();
-                    }
-                }
+        ListModel {
+            id: test_model
+            ListElement {
+                text_content: "Bill Smith"
+            }
+            ListElement {
+                text_content: "John Brown"
+            }
+            ListElement {
+                text_content: "Sam Wise"
             }
         }
 
         ListView {
             id: clipTests
 
+            anchors.top: head.bottom
 
+            width: root.width
+            height: root.height - head.height
+
+            model: test_model
+
+            delegate: Rectangle{
+
+                width: root.width
+                height: 40
+                radius: 5
+                border.color: "blue"
+
+
+                Row {
+
+                    spacing: 2
+
+                    height: parent.height
+                    width: parent.width
+
+                    Text {
+
+                        height: parent.height
+                        width: parent.width - 40 - parent.spacing
+
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: text_content
+                    }
+
+                    Column {
+                        height: parent.height
+                        width: 40
+                        spacing: 2
+
+                        Button {
+                            width: 40
+                            height: parent.height / 2 - 4
+                            text: 'A'
+                        }
+
+                        Button {
+                            width: 40
+                            height: parent.height / 2 - 4
+                            text: 'B'
+                        }
+
+                    }
+                }
+
+
+
+
+
+
+            }
         }
     }
 
