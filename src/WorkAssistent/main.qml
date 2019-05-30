@@ -25,14 +25,39 @@ Window {
             width: parent.width
             height: 30
 
-            Button {
+            Rectangle {
                 id: close_btn
+                anchors.right: parent.right
                 width: 30
                 height: 30
-                anchors.right: parent.right
-                text: "x"
-                onClicked: {
-                    Qt.quit();
+                color: is_hovered ? "red" : "gray"
+                property bool is_hovered: false
+                Image {
+                    id: close_btn_img
+                    width: 30
+                    height: 30
+//                    anchors.verticalCenter: parent.verticalCenter
+//                    anchors.horizontalCenter: parent.horizontalCenter
+
+                    anchors.right: parent.right
+                    source: "qrc:/img/close_btn.png"
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onClicked: {
+                        Qt.quit();
+                        console.log("mouse clicked");
+                    }
+                    onHoveredChanged: {
+                        close_btn.is_hovered = !close_btn.is_hovered;
+                        console.log("mouse hovered", close_btn.is_hovered);
+
+                    }
+                    onPressed: {
+                        console.log("mouse pressed");
+                    }
                 }
             }
 
@@ -106,8 +131,8 @@ Window {
             delegate: Rectangle{
 
                 width: root.width
-                height: 40
-                radius: 5
+                height: 100
+                radius: 3
                 border.color: "blue"
 
 
@@ -118,40 +143,58 @@ Window {
                     height: parent.height
                     width: parent.width
 
-                    Text {
-
-                        height: parent.height
-                        width: parent.width - 40 - parent.spacing
-
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: text_content
-                    }
-
                     Column {
+
                         height: parent.height
-                        width: 40
-                        spacing: 2
+                        width: parent.width
 
-                        Button {
-                            width: 40
-                            height: parent.height / 2 - 4
-                            text: 'A'
+                        spacing: 10
+
+                        Rectangle {
+                            height: 15
+                            width: parent.width
+
+                            Text {
+                                text: "time stamp"
+                            }
                         }
 
-                        Button {
-                            width: 40
-                            height: parent.height / 2 - 4
-                            text: 'B'
-                        }
+                        Rectangle {
+                            height: 20
+                            width: parent.width
 
+                            Text {
+
+                                height: parent.height
+                                width: parent.width
+
+                                anchors.verticalCenter: parent.verticalCenter
+                                text: text_content
+                            }
+                        }
                     }
+
+
+
+//                    Column {
+//                        height: parent.height
+//                        width: 40
+//                        spacing: 2
+
+//                        Button {
+//                            width: 40
+//                            height: parent.height / 2 - 4
+//                            text: 'A'
+//                        }
+
+//                        Button {
+//                            width: 40
+//                            height: parent.height / 2 - 4
+//                            text: 'B'
+//                        }
+
+//                    }
                 }
-
-
-
-
-
-
             }
         }
     }

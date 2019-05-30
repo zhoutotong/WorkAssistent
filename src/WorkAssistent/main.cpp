@@ -2,8 +2,13 @@
 #include <QQmlApplicationEngine>
 #include <QtQuick/QQuickView>
 #include <QQmlContext>
+#include <QDateTime>
+#include <QDebug>
 
 #include "ClipBoard/clipboard.h"
+
+
+void captureWin(int id);
 
 int main(int argc, char *argv[])
 {
@@ -20,3 +25,4 @@ int main(int argc, char *argv[])
 
     return app.exec();
 }
+
