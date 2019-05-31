@@ -3,6 +3,7 @@ import QtQuick.Window 2.2
 
 import QtQuick.Controls 2.4
 
+//import "ClipBoardComponent.qml"
 
 import ClipBoard 1.0
 
@@ -12,14 +13,14 @@ Window {
 
     visible: true
     width: 300
-    minimumHeight: 480
+    minimumHeight: 680
     flags: "FramelessWindowHint"
 
+    Page {
+        anchors.fill: parent
 
-    Column {
-        width: parent.width
-        height: 30
-        Rectangle {
+        // header view
+        header: Rectangle {
 
             id: head
             width: parent.width
@@ -30,14 +31,12 @@ Window {
                 anchors.right: parent.right
                 width: 30
                 height: 30
-                color: is_hovered ? "red" : "gray"
+                color: is_hovered ? "#008B8B" : "#FFFFF0"
                 property bool is_hovered: false
                 Image {
                     id: close_btn_img
                     width: 30
                     height: 30
-//                    anchors.verticalCenter: parent.verticalCenter
-//                    anchors.horizontalCenter: parent.horizontalCenter
 
                     anchors.right: parent.right
                     source: "qrc:/img/close_btn.png"
@@ -61,25 +60,14 @@ Window {
                 }
             }
 
-            Button {
-                id: min_btn
-                width: 30
-                height: 30
-                anchors.right: close_btn.left
-
-                text: "_"
-                onClicked: {
-
-                }
-            }
-
             Row {
-                width: parent.width - close_btn.width - min_btn.width
+                width: parent.width - close_btn.width
                 height: parent.height
 
                 Rectangle {
                     anchors.fill: parent
                     Text {
+                        anchors.verticalCenter: parent.verticalCenter
                         text: "WorkAssistent"
                     }
 
@@ -105,103 +93,20 @@ Window {
         }
 
 
-        ListModel {
-            id: test_model
-            ListElement {
-                text_content: "Bill Smith"
+        // footer view
+        footer: TabBar {
+            width: parent.width
+            height: 35
+            TabButton {
+              text: qsTr("ClipBoard")
             }
-            ListElement {
-                text_content: "John Brown"
+            TabButton {
+              text: qsTr("History")
             }
-            ListElement {
-                text_content: "Sam Wise"
-            }
-        }
-
-        ListView {
-            id: clipTests
-
-            anchors.top: head.bottom
-
-            width: root.width
-            height: root.height - head.height
-
-            model: test_model
-
-            delegate: Rectangle{
-
-                width: root.width
-                height: 100
-                radius: 3
-                border.color: "blue"
-
-
-                Row {
-
-                    spacing: 2
-
-                    height: parent.height
-                    width: parent.width
-
-                    Column {
-
-                        height: parent.height
-                        width: parent.width
-
-                        spacing: 10
-
-                        Rectangle {
-                            height: 15
-                            width: parent.width
-
-                            Text {
-                                text: "time stamp"
-                            }
-                        }
-
-                        Rectangle {
-                            height: 20
-                            width: parent.width
-
-                            Text {
-
-                                height: parent.height
-                                width: parent.width
-
-                                anchors.verticalCenter: parent.verticalCenter
-                                text: text_content
-                            }
-                        }
-                    }
-
-
-
-//                    Column {
-//                        height: parent.height
-//                        width: 40
-//                        spacing: 2
-
-//                        Button {
-//                            width: 40
-//                            height: parent.height / 2 - 4
-//                            text: 'A'
-//                        }
-
-//                        Button {
-//                            width: 40
-//                            height: parent.height / 2 - 4
-//                            text: 'B'
-//                        }
-
-//                    }
-                }
+            TabButton {
+              text: qsTr("Others")
             }
         }
     }
-
-
-
-
-
 
 }
