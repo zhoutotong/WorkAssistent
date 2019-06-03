@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>img/close_btn.png</file>
+        <file>img/settings_btn.png</file>
     </qresource>
 </RCC>
