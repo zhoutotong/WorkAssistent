@@ -90,13 +90,13 @@ Window {
 
                         }
                         onHoveredChanged: {
-                            close_btn.is_hovered = !close_btn.is_hovered;
+                            setting_btn.is_hovered = !setting_btn.is_hovered;
                         }
                     }
                 }
 
                 Row {
-                    width: parent.width - close_btn.width
+                    width: parent.width - close_btn.width - setting_btn.width
                     height: parent.height
 
                     Rectangle {
@@ -151,8 +151,18 @@ Window {
                 height: parent.height
 
                 model: testModel
-                delegate: Text {
-                    text: name + ": " + number
+                delegate: Rectangle {
+
+                    width: parent.width
+                    height: 50
+                    radius: 10
+                    border.width: 1
+                    border.color: "blue"
+
+                    Text {
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: name + ": " + number
+                    }
                 }
             }
 
