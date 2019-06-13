@@ -150,7 +150,10 @@ Window {
                 width: parent.width;
                 height: parent.height
 
+                spacing: 2
                 model: testModel
+
+                clip: true
                 delegate: Rectangle {
 
                     width: parent.width
