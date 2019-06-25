@@ -100,7 +100,8 @@ Window {
                     height: parent.height
 
                     Rectangle {
-                        anchors.fill: parent
+                        width: parent.width
+                        height: parent.height
                         Text {
                             text: "WorkAssistent"
                             font.family: "Helvetica"
@@ -165,6 +166,13 @@ Window {
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
                         text: name + ": " + number
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onDoubleClicked: {
+                            console.log("double clicked on item");
+                        }
                     }
                 }
             }

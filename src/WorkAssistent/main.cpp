@@ -5,16 +5,20 @@
 #include <QDateTime>
 #include <QDebug>
 
+#include <QApplication>
+
 #include "ClipBoard/clipboard.h"
+#include "ClipBoard/clipboardmodel.h"
 
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
 
     qmlRegisterType<ClipBoard>("ClipBoard", 1, 0, "ClipBoard");
+    ClipboardModel *clipBoartModel = new ClipboardModel();
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

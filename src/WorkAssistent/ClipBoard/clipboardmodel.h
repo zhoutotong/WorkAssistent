@@ -3,16 +3,20 @@
 
 #include <QObject>
 #include <QtSql/QSqlTableModel>
+#include "clipboard.h"
 
-class ClipBoardModel : public QSqlTableModel
+class ClipboardModel : public QSqlTableModel
 {
     Q_OBJECT
 public:
-    explicit ClipBoardModel(QObject *parent = nullptr);
+    explicit ClipboardModel(QObject *parent = nullptr);
+    ~ClipboardModel();
 
+private:
+    ClipBoard *__clipboard;
 signals:
 
 public slots:
 };
 
-#endif // CLIPBOARDMODEL_H
+#endif // ClipboardModel_H

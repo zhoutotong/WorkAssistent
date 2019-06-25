@@ -1,3 +1,5 @@
+QT += widgets sql
+
 HEADERS += \
     $$PWD/clipboard.h \
     $$PWD/clipboardmodel.h
